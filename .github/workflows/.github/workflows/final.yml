@@ -1,0 +1,19 @@
+name: Get_My_APK
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          workdir: .
+          
+      - name: Force Upload APK
+        if: always() # Это заставит его попытаться найти APK, даже если были ошибки
+        uses: actions/upload-artifact@v4
+        with:
+          name: game-output
+          path: bin/*.apk
