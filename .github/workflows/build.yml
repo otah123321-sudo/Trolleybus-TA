@@ -5,10 +5,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Buildozer Action
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        
+      - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         with:
           workdir: .
           buildozer_version: master
-          
