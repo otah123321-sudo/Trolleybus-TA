@@ -1,25 +1,14 @@
 name: Build APK
-on: [push, pull_request]
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    # Этот блок убирает все предупреждения о Node.js
-    env:
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          # Принудительно используем последнюю версию
-          fetch-depth: 0
-
-      - name: Build with Buildozer
+      - uses: actions/checkout@v4
+      - name: Buildozer Action
         uses: ArtemSBulgakov/buildozer-action@v1
         with:
           workdir: .
           buildozer_version: master
-    
+          
